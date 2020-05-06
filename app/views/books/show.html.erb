@@ -1,0 +1,31 @@
+<div class="row">
+	<div class="col-xs-3">
+		<h2>User info</h2>
+		<%= render 'users/profile', user: @book.user %>
+		<h2>New book</h2>
+		<%= render 'newform', book: @new_book %>
+	</div>
+
+  <div class='col-xs-9'>
+		<h2>Book detail</h2>
+		<table class='table'>
+      <tr class="book_<%= @book.id %>">
+        <%= render 'detail', book: @book %>
+      </tr>
+    </table>
+
+    <table class="show-tb comment_<%= @book.id %>">
+      <%= render 'comment', book_comments: @book.book_comments %>
+    </table>
+        <div class="comment-form">
+          <%= form_with(model: [@book, @book_comment], url: book_book_comments_path(@book) ) do |f| %>
+            <div class="form-group row">
+              <%= f.text_area :comment, size: "90x5" %>
+              <%= f.submit "送信"%>
+            </div>
+          <% end %>
+        </div>
+
+  </div>
+</div>
+
